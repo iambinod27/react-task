@@ -33,7 +33,6 @@ export default function MkdSDK() {
       );
       const response = await data.json();
 
-      console.log(response);
       localStorage.setItem("token", JSON.stringify(response.token));
       localStorage.setItem("role", JSON.stringify(response.role));
     } catch (error) {
@@ -132,7 +131,6 @@ export default function MkdSDK() {
         );
 
         const response = await data.json();
-        console.log(response);
       } catch (error) {
         console.log(error);
       }

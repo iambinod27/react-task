@@ -50,7 +50,21 @@ const AuthProvider = ({ children }) => {
 
   React.useEffect(() => {
     //TODO
-  }, []);
+    const loggedInUser = localStorage.getItem("role");
+
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      dispatch({
+        type: "LOGIN",
+        payload: {
+          isAuthenticated: true,
+          role: foundUser,
+        },
+      });
+
+      sdk.check(foundUser);
+    }
+  }, [state.token]);
 
   return (
     <AuthContext.Provider

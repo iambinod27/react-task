@@ -1,14 +1,30 @@
-import React from "react";
-import img1 from "../assets/Rectangle 1534.png";
+import React, { useContext } from "react";
+import { useNavigate } from "react-router";
+import { AuthContext } from "../authContext";
+import DashboardList from "../components/DashboardList";
 
 const AdminDashboardPage = () => {
+  const { dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  function onLogout() {
+    dispatch({
+      type: "LOGOUT",
+    });
+
+    navigate("/admin/login");
+  }
+
   return (
     <>
       <div className="w-full text-7xl h-screen bg-[#111111]">
         <div className="px-16">
           <div className="flex justify-between w-full py-7">
             <h1 className=" text-[48px] font-[900] text-white">APP</h1>
-            <button className="rounded-3xl bg-[#9BFF00] px-8 font-[100] text-[16px] flex items-center gap-1">
+            <button
+              onClick={onLogout}
+              className="rounded-3xl bg-[#9BFF00] px-8 font-[100] text-[16px] flex items-center gap-1"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -39,26 +55,25 @@ const AdminDashboardPage = () => {
           {/* Leaderboard */}
 
           {/* Table */}
-          <table className="table-fixed text-[16px] text-white">
+          <table className="table-auto text-[16px] text-white py-11 border-separate ">
             <thead>
               <tr>
-                <th className="px-2">#</th>
-                <th className="text-start px-5">Title</th>
-                <th className="px-10">Author</th>
-                <th className="text-end">Most Liked</th>
+                <th scope="col" className="px-2">
+                  #
+                </th>
+                <th scope="col" className="text-start px-5">
+                  Title
+                </th>
+                <th scope="col" className="px-10">
+                  Author
+                </th>
+                <th scope="col" className="text-end">
+                  Most Liked
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="">
-                <td>01</td>
-                <td className="flex items-center h-full">
-                  <img src={img1} alt="#@" className="h-14 w-28" />
-                  Rune raises $100,000 for marketing through NFT butterflies
-                  sale
-                </td>
-                <td className="text-center">ninjanft</td>
-                <td>254</td>
-              </tr>
+              <DashboardList />
             </tbody>
           </table>
           {/* Table */}
