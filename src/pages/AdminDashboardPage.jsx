@@ -17,7 +17,7 @@ const AdminDashboardPage = () => {
 
   return (
     <>
-      <div className="w-full text-7xl h-screen bg-[#111111]">
+      <div className="w-full text-7xl h-min-screen bg-[#111111]">
         <div className="px-16">
           <div className="flex justify-between w-full py-7">
             <h1 className=" text-[48px] font-[900] text-white">APP</h1>
@@ -40,7 +40,7 @@ const AdminDashboardPage = () => {
           </div>
 
           {/* Leaderboard */}
-          <div className="flex mt-10 items-center items-stretch justify-between">
+          <div className="flex mt-10  items-stretch justify-between">
             <div className="font-[100] text-[40px] text-white">
               Today's Leaderboard
             </div>
@@ -55,7 +55,7 @@ const AdminDashboardPage = () => {
           {/* Leaderboard */}
 
           {/* Table */}
-          <table className="table-auto text-[16px] text-white py-11 border-separate ">
+          <table className="table-auto text-[16px] text-white py-11 border-separate w-full">
             <thead>
               <tr>
                 <th scope="col" className="px-2">
@@ -73,7 +73,9 @@ const AdminDashboardPage = () => {
               </tr>
             </thead>
             <tbody>
-              <DashboardList />
+              {new Array(7).fill(0).map((index) => {
+                return <DashboardList />;
+              })}
             </tbody>
           </table>
           {/* Table */}
